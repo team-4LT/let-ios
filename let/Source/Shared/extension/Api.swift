@@ -5,7 +5,7 @@ enum Api {
     case getMe
     case login(username: String, password: String)
     case reissueToken(refreshToken: String)
-    case signup(username: String, password: String, studentId: String, realName: String, ProfileImage: String)
+    case signup(username: String, password: String, studentId: String, realName: String, schoolId: Int)
 }
 
 extension Api: TargetType {
@@ -50,14 +50,14 @@ extension Api: TargetType {
                     "password": password
                 ], encoding: JSONEncoding.default)
             
-        case .signup(username: let username, password: let password, studentId: let studentId, realName: let realName, ProfileImage: let ProfileImage):
+        case .signup(username: let username, password: let password, studentId: let studentId, realName: let realName, schoolId: let schoolId):
             return .requestParameters(
                 parameters: [
                     "username": username,
                     "password": password,
                     "studentId": studentId,
                     "realName": realName,
-                    "ProfileImage": ProfileImage
+                    "schoolId": schoolId
                 ], encoding: JSONEncoding.default)
             
         case .reissueToken(let refreshToken):

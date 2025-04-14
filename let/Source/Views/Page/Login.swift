@@ -9,25 +9,71 @@ import SwiftUI
 import FlexibleKit
 
 struct Login: View {
+    @State var username: String = ""
+    @State var password: String = ""
+    
     var body: some View {
         ZStack{
             VStack {
                 Image("Stars")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: UIScreen.main.bounds.width, height: 220)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.4)
                 Spacer()
             }.ignoresSafeArea(.all)
             VStack{
                 Spacer()
-                VStack(alignment: .leading){
+                VStack(alignment: .center){
+                    Image("Logo")
+                        .resizable()
+                        .frame(width: 142, height: 60)
+                    
+                    Rectangle()
+                        .fill(Color.white)
+                        .frame(height: 12)
+                    
+                    
+                    TextField(text: $username, label: { Text("아이디") })
+                        .padding()
+                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.grey, lineWidth: 1))
+                        .hideKeyBoard()
+                    
+                    SecureField(text: $password, label: { Text("비밀번호") })
+                        .padding()
+                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.grey, lineWidth: 1))
+                        .hideKeyBoard()
+                    
+                    Spacer()
+                    
                     Button {
                         UserDefaults.standard.set("accessToken", forKey: "accessToken")
+                        print(username, password)
                     } label: {
-                        Text("Login")
-                    }
+                        LinearGradient(
+                            gradient: Gradient(colors: [.main, .main2]),
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                        .frame(maxWidth: .infinity, maxHeight: 50)
+                        .roundedCorners(8, corners: [.allCorners])
+                        .overlay(HStack{
+                            Text("로그인")
+                                .font(.medium(18))
+                                .foregroundStyle(Color.white)
+                        })
+                    }.frame(maxWidth: .infinity, maxHeight: 50)
+                    
+                    Rectangle()
+                        .fill(Color.white)
+                        .frame(height: 36)
+                    
+                    Text("Copyright 2025. ALT All rights reserved.")
+                        .font(.system(size: 12, weight: .light))
+                        .foregroundStyle(Color.grey)
                 }
-                .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height - 200)
+                .padding(.vertical, 48)
+                .padding(.horizontal, 24)
+                .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.8)
                 .background(Color.white)
                 .roundedCorners(20, corners: [.topLeft, .topRight])
                 
