@@ -6,13 +6,34 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D14B2B572DACB44F005BE5F6 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = D14B2B562DACB44F005BE5F6 /* Moya */; };
+		D14B2B592DACB44F005BE5F6 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = D14B2B582DACB44F005BE5F6 /* ReactiveMoya */; };
+		D14B2B5B2DACB44F005BE5F6 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = D14B2B5A2DACB44F005BE5F6 /* RxMoya */; };
+		D14B2B5E2DACB464005BE5F6 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = D14B2B5D2DACB464005BE5F6 /* Shimmer */; };
+		D14B2BF52DACD448005BE5F6 /* FlexibleKit in Frameworks */ = {isa = PBXBuildFile; productRef = D14B2BF42DACD448005BE5F6 /* FlexibleKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D14B2A9A2DACAE02005BE5F6 /* let.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = let.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D14B2BF22DACCEC9005BE5F6 /* Exceptions for "let" folder in "let" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D14B2A992DACAE02005BE5F6 /* let */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D14B2A9C2DACAE02005BE5F6 /* let */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D14B2BF22DACCEC9005BE5F6 /* Exceptions for "let" folder in "let" target */,
+			);
 			path = let;
 			sourceTree = "<group>";
 		};
@@ -23,6 +44,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D14B2BF52DACD448005BE5F6 /* FlexibleKit in Frameworks */,
+				D14B2B5E2DACB464005BE5F6 /* Shimmer in Frameworks */,
+				D14B2B5B2DACB44F005BE5F6 /* RxMoya in Frameworks */,
+				D14B2B572DACB44F005BE5F6 /* Moya in Frameworks */,
+				D14B2B592DACB44F005BE5F6 /* ReactiveMoya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +91,11 @@
 			);
 			name = let;
 			packageProductDependencies = (
+				D14B2B562DACB44F005BE5F6 /* Moya */,
+				D14B2B582DACB44F005BE5F6 /* ReactiveMoya */,
+				D14B2B5A2DACB44F005BE5F6 /* RxMoya */,
+				D14B2B5D2DACB464005BE5F6 /* Shimmer */,
+				D14B2BF42DACD448005BE5F6 /* FlexibleKit */,
 			);
 			productName = let;
 			productReference = D14B2A9A2DACAE02005BE5F6 /* let.app */;
@@ -94,6 +125,11 @@
 			);
 			mainGroup = D14B2A912DACAE02005BE5F6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D14B2B552DACB44F005BE5F6 /* XCRemoteSwiftPackageReference "Moya" */,
+				D14B2B5C2DACB464005BE5F6 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+				D14B2BF32DACD448005BE5F6 /* XCRemoteSwiftPackageReference "FlexibleKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D14B2A9B2DACAE02005BE5F6 /* Products */;
 			projectDirPath = "";
@@ -251,15 +287,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"let/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"let/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = U4VGJDX962;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = let/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LET;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -280,15 +319,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"let/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"let/Resource/Preview Content\"";
 				DEVELOPMENT_TEAM = U4VGJDX962;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = let/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LET;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,6 +366,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D14B2B552DACB44F005BE5F6 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+		D14B2B5C2DACB464005BE5F6 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.1;
+			};
+		};
+		D14B2BF32DACD448005BE5F6 /* XCRemoteSwiftPackageReference "FlexibleKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eunchan2815/FlexibleKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D14B2B562DACB44F005BE5F6 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D14B2B552DACB44F005BE5F6 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		D14B2B582DACB44F005BE5F6 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D14B2B552DACB44F005BE5F6 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		D14B2B5A2DACB44F005BE5F6 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D14B2B552DACB44F005BE5F6 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+		D14B2B5D2DACB464005BE5F6 /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D14B2B5C2DACB464005BE5F6 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
+		};
+		D14B2BF42DACD448005BE5F6 /* FlexibleKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D14B2BF32DACD448005BE5F6 /* XCRemoteSwiftPackageReference "FlexibleKit" */;
+			productName = FlexibleKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D14B2A922DACAE02005BE5F6 /* Project object */;
 }
