@@ -20,6 +20,7 @@ struct Login: View {
                     .scaledToFill()
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.4)
                 Spacer()
+                
             }.ignoresSafeArea(.all)
             VStack{
                 Spacer()
