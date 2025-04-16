@@ -9,9 +9,20 @@ import SwiftUI
 
 @main
 struct letApp: App {
+    @State var isSplash = true
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isSplash {
+                Splash()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                            isSplash = false
+                        }
+                    }
+            } else {
+                Login()
+            }
+                
         }
     }
 }

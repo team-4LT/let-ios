@@ -11,6 +11,9 @@ import FlexibleKit
 struct Login: View {
     @State var username: String = ""
     @State var password: String = ""
+    @FocusState private var isUsernameFocused : Bool
+    @FocusState private var isPasswordFocused : Bool
+    
     
     var body: some View {
         ZStack{
@@ -36,13 +39,17 @@ struct Login: View {
                     
                     TextField(text: $username, label: { Text("아이디") })
                         .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.grey, lineWidth: 1))
+                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(isUsernameFocused ? Color(hex: "FF3939") : Color.grey, lineWidth: 1))
                         .hideKeyBoard()
+                        .focused($isUsernameFocused)
+                        .tint(Color(hex: "FF3939"))
                     
                     SecureField(text: $password, label: { Text("비밀번호") })
                         .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.grey, lineWidth: 1))
+                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(isPasswordFocused ? Color.init(hex: "#FF3939") : Color.grey, lineWidth: 1))
                         .hideKeyBoard()
+                        .focused($isPasswordFocused)
+                        .tint(Color(hex: "FF3939"))
                     
                     Spacer()
                     
