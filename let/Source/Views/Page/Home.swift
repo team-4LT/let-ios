@@ -25,6 +25,7 @@ struct Home: View {
                     .resizable()
                     .frame(width: 72, height: 32)
                 Spacer()
+                 
             }
             .padding(.horizontal, 24)
             .padding(.bottom,27.62)
