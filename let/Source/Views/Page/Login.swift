@@ -43,6 +43,7 @@ struct Login: View {
                         .hideKeyBoard()
                         .focused($isUsernameFocused)
                         .tint(Color(hex: "FF3939"))
+                        .autocapitalization(.none)
                     
                     SecureField(text: $password, label: { Text("비밀번호") })
                         .padding()
@@ -50,6 +51,7 @@ struct Login: View {
                         .hideKeyBoard()
                         .focused($isPasswordFocused)
                         .tint(Color(hex: "FF3939"))
+                        .autocapitalization(.none)
                     
                     Spacer()
                     
