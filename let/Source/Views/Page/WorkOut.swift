@@ -9,6 +9,8 @@ import SwiftUI
 
 struct WorkOut: View {
     
+    
+    
     var missions = [
         Mission(id: 1, mission: "달리기 3분", missoinDetail: "달리기 3분을 뛰세요"),
         Mission(id: 2, mission: "달리기 5분", missoinDetail: "달리기 5분을 뛰세요"),
