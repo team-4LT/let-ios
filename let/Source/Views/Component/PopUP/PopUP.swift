@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PopUP: View {
-    @State var easy: Bool = false
+    @State var easy: Bool = true
     @State var medium: Bool = false
     @State var hard: Bool = false
     
@@ -24,9 +24,16 @@ struct PopUP: View {
                 }) {
                     Text("초급")
                         .frame(width: 296, height: 47)
-                        .foregroundColor(.white)
-                        .background(easy ? Color.red : Color.gray.opacity(0.3))
-                        .cornerRadius(10)
+                        .foregroundStyle(easy ? Color.white :
+                            Color.red)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(easy ? Color.red : Color.white)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.red, lineWidth: 1)
+                        )
                 }
 
                 Button(action: {
@@ -35,9 +42,16 @@ struct PopUP: View {
                 }) {
                     Text("중급")
                         .frame(width: 296, height: 47)
-                        .foregroundColor(.white)
-                        .background(medium ? Color.red : Color.gray.opacity(0.3))
-                        .cornerRadius(10)
+                        .foregroundStyle(medium ? Color.white :
+                            Color.red)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(medium ? Color.red : Color.white)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.red, lineWidth: 1)
+                        )
                 }
                 Button(action: {
                     hard.toggle()
@@ -45,9 +59,16 @@ struct PopUP: View {
                 }) {
                     Text("고급")
                         .frame(width: 296, height: 47)
-                        .foregroundColor(.white)
-                        .background(hard ? Color.red : Color.gray.opacity(0.3))
-                        .cornerRadius(10)
+                        .foregroundStyle(hard ? Color.white :
+                            Color.red)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(hard ? Color.red : Color.white)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.pink, lineWidth: 1)
+                        )
                 }
             }
             .padding()
