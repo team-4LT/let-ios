@@ -19,7 +19,7 @@ struct PopUP: View {
                     .font(.system(size: 20, weight: .semibold))
 
                 Button(action: {
-                    easy.toggle()
+                    easy = true
                     if easy { medium = false; hard = false }
                 }) {
                     Text("초급")
@@ -37,7 +37,7 @@ struct PopUP: View {
                 }
 
                 Button(action: {
-                    medium.toggle()
+                    medium = true
                     if medium { easy = false; hard = false }
                 }) {
                     Text("중급")
@@ -54,7 +54,7 @@ struct PopUP: View {
                         )
                 }
                 Button(action: {
-                    hard.toggle()
+                    hard = true
                     if hard { easy = false; medium = false }
                 }) {
                     Text("고급")

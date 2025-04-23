@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct WorkOut: View {
-    
-    
+    @State private var level: Bool = false
     
     var missions = [
         Mission(id: 1, mission: "달리기 3분", missoinDetail: "달리기 3분을 뛰세요"),
@@ -22,26 +21,41 @@ struct WorkOut: View {
     //MARK: 더미미션 나중에 api 받으면 수정행
     
     var body: some View {
-        VStack{
-            HStack {
-                Text("운동").font(.semibold(24))
-                Spacer()
-                Button {
-                    //
-                } label: {
-                    Text("난이도 설정").font(.regular(16))
-                        .foregroundStyle(Color(hex: "303030"))
+        ZStack {
+            VStack{
+                HStack {
+                    Text("운동").font(.semibold(24))
+                    Spacer()
+                    Button {
+                        withAnimation{
+                            level.toggle()
+                        }
+                    } label: {
+                        Text("난이도 설정").font(.regular(16))
+                            .foregroundStyle(Color(hex: "303030"))
+                    }
+                }
+                .padding(.horizontal, 24)
+                ScrollView {
+                    LazyVStack {
+                        ForEach(missions, id: \.id) { mission in
+                            ChallangeBox(
+                                mission: mission.mission,
+                                missionDetail: mission.missoinDetail
+                            )
+                        }
+                    }
                 }
             }
-            .padding(.horizontal, 24)
-            ScrollView {
-                LazyVStack {
-                    ForEach(missions, id: \.id) { mission in
-                        ChallangeBox(
-                            mission: mission.mission,
-                            missionDetail: mission.missoinDetail
-                        )
+            if level {
+                Color.black.opacity(0.4)
+                    .edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                            level = false
                     }
+                withAnimation{
+                    PopUP()
+                        .transition(.move(edge: .bottom))
                 }
             }
         }
