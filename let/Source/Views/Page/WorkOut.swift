@@ -54,7 +54,7 @@ struct WorkOut: View {
                             level = false
                     }
                 withAnimation{
-                    PopUP()
+                    LevelPopUP()
                         .transition(.move(edge: .bottom))
                 }
             }

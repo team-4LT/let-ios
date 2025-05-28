@@ -36,12 +36,16 @@ struct Home: View {
                         .foregroundStyle(Color.main)
                         .overlay {
                             HStack {
-                                Image("AddPhoto")
+                                Image("check")
+                                    .resizable()
+                                    .edgesIgnoringSafeArea(.all)
+                                    .frame(width: 24, height: 24)
+                                    .foregroundStyle(.white)
                                     .padding(.leading,18)
                                 VStack(alignment: .leading, spacing: 1) {
-                                    Text("인증사진 찍기")
+                                    Text("출석체크 하기")
                                         .font(.semibold(20))
-                                    Text("인증사진을 올려주세요!")
+                                    Text("NFC태그를 찍어주세요!")
                                         .font(.medium(12))
                                 }
                                 .foregroundStyle(.white)

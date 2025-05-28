@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PopUP: View {
+struct LevelPopUP: View {
     @State var easy: Bool = true
     @State var medium: Bool = false
     @State var hard: Bool = false
@@ -83,5 +83,5 @@ struct PopUP: View {
 }
 
 #Preview {
-    PopUP()
+    LevelPopUP()
 }

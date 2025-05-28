@@ -28,7 +28,6 @@ struct TabbarView: View {
                 }
                 .environmentObject(toastManager)
             }
-            .padding(.horizontal, 24)
 
             VStack(spacing: 0){
                 Spacer()

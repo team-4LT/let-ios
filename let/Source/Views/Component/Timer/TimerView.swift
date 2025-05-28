@@ -10,6 +10,8 @@ import Combine
 
 struct TimerView: View {
     let date = Date()
+    @State var start: Bool = false
+    @State var zero: Bool = false
     @State var time: Int = 180
     @State var timeRemaining : Int = 1
     @State var timer = Timer.publish(every: 1, on: .main, in: .common)
@@ -54,6 +56,7 @@ struct TimerView: View {
                 }
             }
             Button(action: {
+                start.toggle()
             }) {
                 Text("시작하기")
                     .font(.system(size: 16, weight: .semibold))
@@ -70,7 +73,7 @@ struct TimerView: View {
             let seconds = timeInSeconds % 60
             return String(format: "%02i:%02i",minutes,seconds)
         }
-        
+    
         func calcRemain() {
             let calendar = Calendar.current
             let targetTime : Date = calendar.date(byAdding: .second, value: time, to: date, wrappingComponents: false) ?? Date()
