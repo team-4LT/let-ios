@@ -41,12 +41,10 @@ struct EvaluationView3: View {
                     Spacer()
                     
                 
-                    NavigationLink(
-                        destination: EvaluationView4( ).navigationBarBackButtonHidden(),
-                        isActive: $goToNext
-                    ) {
-                        EmptyView()
-                    }
+                    .navigationDestination(isPresented: $goToNext) {
+                            EvaluationView4()
+                                .navigationBarBackButtonHidden()
+                        }
                 }
                 .padding(.horizontal, 48)
             }

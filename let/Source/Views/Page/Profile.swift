@@ -17,6 +17,16 @@ struct Profile: View {
                     .frame(width: UIScreen.main.bounds.width, height: 220)
                 Spacer()
             }.ignoresSafeArea(.all)
+            
+            HStack {
+                VStack {
+                    Spacer()
+                    Image("duck")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 170,height: 170)
+                }
+            }
             VStack{
                 Spacer()
                 VStack(alignment: .leading){

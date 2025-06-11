@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Home: View {
+    @State private var check: Bool = false
     @State private var selectedDate: Date = Date()
 
     private var selectedDateString: String {
@@ -36,12 +37,15 @@ struct Home: View {
                         .foregroundStyle(Color.main)
                         .overlay {
                             HStack {
-                                Image("check")
-                                    .resizable()
-                                    .edgesIgnoringSafeArea(.all)
-                                    .frame(width: 24, height: 24)
-                                    .foregroundStyle(.white)
-                                    .padding(.leading,18)
+                                Button(action: {
+                                    check.toggle()
+                                }) {
+                                    Image("check")
+                                        .resizable()
+                                        .edgesIgnoringSafeArea(.all)
+                                        .frame(width: 24, height: 24)
+                                        .foregroundStyle(.white)
+                                        .padding(.leading,18)
                                 VStack(alignment: .leading, spacing: 1) {
                                     Text("출석체크 하기")
                                         .font(.semibold(20))
@@ -52,6 +56,7 @@ struct Home: View {
                                 Spacer()
                             }
                         }
+                    }
                     VStack(spacing: 0) {
                         Rectangle()
                             .frame(width: .infinity, height: 93)

@@ -9,15 +9,13 @@ import SwiftUI
 import Combine
 
 struct TimerView: View {
-    let date = Date()
-    @State var start: Bool = false
-    @State var zero: Bool = false
-    @State var time: Int = 180
-    @State var timeRemaining : Int = 1
-    @State var timer = Timer.publish(every: 1, on: .main, in: .common)
-    @State var cancellable: Cancellable?
+    @State private var isRunning = false
+    @State private var timeRemaining: Int = 2
+    @State private var timer: AnyCancellable?
+    @State private var isPaused: Bool = false
+
     var body: some View {
-        VStack{
+        VStack {
             ZStack {
                 Image("light")
                     .frame(width: 442, height: 442)
@@ -29,57 +27,71 @@ struct TimerView: View {
                         .padding(.bottom, 50)
                     Image("Girlrunning")
                         .resizable()
-                        .edgesIgnoringSafeArea(.all)
                         .frame(width: 179, height: 289)
                 }
-
             }
             ZStack {
                 HStack {
                     Image("alarm")
                         .resizable()
-                        .edgesIgnoringSafeArea(.all)
                         .frame(width: 30, height: 28)
-                    Text(convertSecondsToTime(timeInSeconds:timeRemaining))
+                    Text(convertSecondsToTime(timeInSeconds: timeRemaining))
                         .font(.system(size: 36, weight: .semibold))
-                        .onReceive(timer) { _ in
-                            if timeRemaining > 0 {
-                                timeRemaining -= 1
-                            } else {
-                                cancellable?.cancel()
-                            }
-                        }
-                        .onAppear {
-                            calcRemain()
-                            cancellable = timer.connect()
-                        }
                 }
             }
+
             Button(action: {
-                start.toggle()
+                isRunning.toggle()
+                
+                if isRunning {
+                    startTimer()
+                } else {
+                    stopTimer()
+                }
             }) {
-                Text("시작하기")
+                Text(isRunning ? "일시정지" : "시작하기")
                     .font(.system(size: 16, weight: .semibold))
                     .frame(width: 344, height: 55)
-                    .foregroundStyle(Color(.white))
-                    .background(Color(.red))
+                    .foregroundStyle(Color.white)
+                    .background(Color.red)
                     .cornerRadius(8)
             }
         }
+        .onDisappear {
+            stopTimer()
+        }
+        .onDisappear{
+            popup()
+        }
     }
-        
-        func convertSecondsToTime(timeInSeconds: Int) -> String {
-            let minutes = timeInSeconds / 60
-            let seconds = timeInSeconds % 60
-            return String(format: "%02i:%02i",minutes,seconds)
-        }
     
-        func calcRemain() {
-            let calendar = Calendar.current
-            let targetTime : Date = calendar.date(byAdding: .second, value: time, to: date, wrappingComponents: false) ?? Date()
-            let remainSeconds = Int(targetTime.timeIntervalSince(date))
-            self.timeRemaining = remainSeconds
-        }
+    func startTimer() {
+        timer = Timer
+            .publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { _ in
+                if timeRemaining > 0 {
+                    timeRemaining -= 1
+                } else {
+                    stopTimer()
+                }
+            }
+    }
+    
+    func popup() {
+        RoutinePopUP.init()
+    }
+    //sheet 사용해서 저 함수 호출 시키거나 그냥 뷰 호출 시키기
+    func stopTimer() {
+        timer?.cancel()
+        timer = nil
+    }
+
+    func convertSecondsToTime(timeInSeconds: Int) -> String {
+        let minutes = timeInSeconds / 60
+        let seconds = timeInSeconds % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
 }
 
 #Preview {

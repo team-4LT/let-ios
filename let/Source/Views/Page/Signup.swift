@@ -1,14 +1,14 @@
 //
-//  Login.swift
+//  Signup.swift
 //  let
 //
-//  Created by cher1shRXD on 4/14/25.
+//  Created by 임현우 on 6/11/25.
 //
 
 import SwiftUI
 import FlexibleKit
 
-struct Login: View {
+struct Signup: View {
     @State var username: String = ""
     @State var password: String = ""
     @State var isLoggingIn: Bool = false
@@ -104,5 +104,5 @@ struct Login: View {
 }
 
 #Preview {
-    Login()
+    Signup()
 }

@@ -32,7 +32,7 @@ struct EvaluationView1: View {
                             .resizable()
                             .frame(width: 40, height: 40)
                             .foregroundStyle(star <= rating ? .yellow : .gray)
-.onTapGesture {
+                            .onTapGesture {
                                 rating = star
                                 navigate = true
                             }
@@ -43,8 +43,10 @@ struct EvaluationView1: View {
 
                 Spacer()
 
-                NavigationLink("", destination: EvaluationView2(rating: rating).navigationBarBackButtonHidden(), isActive: $navigate)
-                    .opacity(0)
+                    .navigationDestination(isPresented: $navigate) {
+                            EvaluationView2(rating: rating)
+                                .navigationBarBackButtonHidden()
+                        }
             }
         }
     }
