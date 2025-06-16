@@ -1,0 +1,26 @@
+<svg width="440" height="956" viewBox="0 0 440 956" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_2022_356)">
+<rect width="440" height="956" fill="url(#paint0_linear_2022_356)"/>
+<rect x="349.884" y="272.323" width="168.029" height="8.72455" rx="4.36228" transform="rotate(-45 349.884 272.323)" fill="white"/>
+<rect x="37" y="270.933" width="157.414" height="10.2069" rx="5.10347" transform="rotate(-45 37 270.933)" fill="white"/>
+<rect x="6.59375" y="143.339" width="139.113" height="8.0857" rx="4.04285" transform="rotate(-45 6.59375 143.339)" fill="white"/>
+<rect x="235.542" y="293.982" width="159.989" height="9.78839" rx="4.89419" transform="rotate(-45 235.542 293.982)" fill="white"/>
+<rect x="240.071" y="176.51" width="145.299" height="11.8702" rx="5.93509" transform="rotate(-45 240.071 176.51)" fill="white"/>
+<circle cx="407" cy="126.625" r="5" fill="white"/>
+<circle cx="52" cy="190.625" r="5" fill="white"/>
+<circle cx="253.5" cy="47.1245" r="7.5" fill="white"/>
+<circle cx="197" cy="134.625" r="6" fill="white"/>
+<circle cx="210" cy="224.625" r="4" fill="white"/>
+<circle cx="57" cy="69.6245" r="4" fill="white"/>
+<rect x="154" y="79.6016" width="149.874" height="9.71804" rx="4.85902" transform="rotate(-45 154 79.6016)" fill="white"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_2022_356" x1="220" y1="0" x2="220" y2="956" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FF3939"/>
+<stop offset="0.254808" stop-color="#FF8957"/>
+</linearGradient>
+<clipPath id="clip0_2022_356">
+<rect width="440" height="956" fill="white"/>
+</clipPath>
+</defs>
+</svg>
