@@ -14,7 +14,9 @@ struct EvaluationView4: View {
                 .font(.system(size: 32).weight(.semibold))
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 95)
-            ToHomeButton ()
+            RedButton(action: {
+                print("홈으로")
+            }, text: "홈으로")
         }
         .padding(.horizontal, 48)
     }
@@ -22,20 +24,4 @@ struct EvaluationView4: View {
 #Preview {
     EvaluationView4()
 }
-struct ToHomeButton: View {
-    
-    
-    var body: some View {
-        Button{print("홈으로")} label: {
-            
-            
-            RoundedRectangle(cornerRadius: 8)
-                .frame(maxWidth: .infinity, maxHeight: 55)
-                .foregroundStyle(.red)
-                .overlay {
-                    Text("홈으로")
-                        .foregroundStyle(.white)
-                }
-        }
-    }
-}
+

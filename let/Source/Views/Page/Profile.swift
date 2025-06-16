@@ -1,51 +1,42 @@
-//
-//  Profile.swift
-//  let
-//
-//  Created by cher1shRXD on 4/14/25.
-//
+
 
 import SwiftUI
 
 struct Profile: View {
     var body: some View {
-        ZStack{
+        ZStack {
             VStack {
-                Image("Stars")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.main.bounds.width, height: 220)
                 Spacer()
-            }.ignoresSafeArea(.all)
-            
-            HStack {
                 VStack {
-                    Spacer()
-                    Image("duck")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 170,height: 170)
+                    RoundedRectangle(cornerRadius: 14)
+                        .foregroundStyle(.white)
+                        .overlay {
+                            VStack {
+                                VStack {
+                                    Image("duck")
+                                        .padding(.bottom,18)
+                                    Text("임동규")
+                                        .font(.system(size: 24).weight(.semibold))
+                                        .padding(.bottom,2)
+                                    Text("2학년 2반 4번")
+                                        .font(.system(size: 20).weight(.regular))
+                                }.offset(y:-110)
+                                RedButton(action: {
+                                    print("logout")
+                                }, text: "로그아웃")
+                                Spacer()
+                            }
+                            .padding(.horizontal,24)
+                        }
                 }
+                .frame(height: UIScreen.main.bounds.height - 220)
             }
-            VStack{
-                Spacer()
-                VStack(alignment: .leading){
-                    Button {
-                        UserDefaults.standard.removeObject(forKey: "accessToken")
-                    } label: {
-                        Text("Logout")
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height - 200)
-                .background(Color.white)
-                .roundedCorners(20, corners: [.topLeft, .topRight])
-                
+            .background {
+                Image("Starbg")
+                    .scaledToFill()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea(.all)
-            
-        }
-    }
+        }}
 }
 
 #Preview {
