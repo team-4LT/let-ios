@@ -8,12 +8,14 @@
 import SwiftUI
 import FlexibleKit
 
-struct Signup: View {
-    @State var username: String = ""
-    @State var password: String = ""
+struct Signup1: View {
+    @State var realName: String = ""
+    @State var schoolNum: String = ""
+    @State var schoolID: String = ""
     @State var isLoggingIn: Bool = false
-    @FocusState private var isUsernameFocused : Bool
-    @FocusState private var isPasswordFocused : Bool
+    @FocusState private var isRealNameocused : Bool
+    @FocusState private var isSchoolNumFocused : Bool
+    @FocusState private var isSchoolIDFocused : Bool
     
     
     
@@ -40,28 +42,26 @@ struct Signup: View {
                             .frame(height: 12)
                         
                         
-                        TextField(text: $username, label: { Text("아이디") })
-                            .padding()
-                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(isUsernameFocused ? Color(hex: "FF3939") : Color.grey, lineWidth: 1))
-                            .hideKeyBoard()
-                            .focused($isUsernameFocused)
-                            .tint(Color(hex: "FF3939"))
+                       TextField("이름을 입력하세요",text: $realName)
                             .autocapitalization(.none)
-                        
-                        SecureField(text: $password, label: { Text("비밀번호") })
-                            .padding()
-                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(isPasswordFocused ? Color.init(hex: "#FF3939") : Color.grey, lineWidth: 1))
-                            .hideKeyBoard()
-                            .focused($isPasswordFocused)
                             .tint(Color(hex: "FF3939"))
+                            .textFieldStyle(CustomTextField(focused: $isRealNameocused))
+                        TextField("학번을 입력하세요",text: $schoolNum)
                             .autocapitalization(.none)
+                             .tint(Color(hex: "FF3939"))
+                             .textFieldStyle(CustomTextField(focused: $isSchoolNumFocused))
+                        TextField("학교ID를 입력하세요",text: $schoolID)
+                            .autocapitalization(.none)
+                             .tint(Color(hex: "FF3939"))
+                             .textFieldStyle(CustomTextField(focused: $isSchoolIDFocused))
                         
+                      
                         Spacer()
                         
                         Button {
                             isLoggingIn.toggle()
                             UserDefaults.standard.set("accessToken", forKey: "accessToken")
-                            print(username, password)
+                            
                         } label: {
                             LinearGradient(
                                 gradient: Gradient(colors: [.main, .main2]),
@@ -71,7 +71,7 @@ struct Signup: View {
                             .frame(maxWidth: .infinity, maxHeight: 50)
                             .roundedCorners(8, corners: [.allCorners])
                             .overlay(HStack{
-                                Text("로그인")
+                                Text("다음")
                                     .font(.medium(18))
                                     .foregroundStyle(Color.white)
                             })
@@ -95,7 +95,9 @@ struct Signup: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .ignoresSafeArea(.all)
                 .navigationDestination(isPresented: $isLoggingIn) {
-                    TabbarView()
+                    Signup2(realName: realName,
+                             studentId: schoolNum,
+                             schoolId: Int(schoolID) ?? 0)
                         .navigationBarBackButtonHidden()
                 }
             }
@@ -104,5 +106,5 @@ struct Signup: View {
 }
 
 #Preview {
-    Signup()
+    Signup1()
 }

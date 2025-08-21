@@ -9,3 +9,9 @@ struct LoginModel: Codable {
     let accessToken: String
     let refreshToken: String
 }
+
+struct LoginResponse: Codable {
+    let data: LoginModel
+    let status: Int
+    let message : String
+}
