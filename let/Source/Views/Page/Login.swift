@@ -1,36 +1,35 @@
-//
-//  Login.swift
-//  let
-//
-//  Created by cher1shRXD on 4/14/25.
-//
-
 import SwiftUI
 import FlexibleKit
+import Moya
 
 struct Login: View {
     @State var username: String = ""
     @State var password: String = ""
     @State var isLoggingIn: Bool = false
-    @FocusState private var isUsernameFocused : Bool
-    @FocusState private var isPasswordFocused : Bool
     
+    @State private var showError: Bool = false
+    @State private var errorMessage: String = ""
     
+    @FocusState private var isUsernameFocused: Bool
+    @FocusState private var isPasswordFocused: Bool
+    
+    let provider = MoyaProvider<Api>()
     
     var body: some View {
-        NavigationStack{
-            ZStack{
+        NavigationStack {
+            ZStack {
                 VStack {
                     Image("Stars")
                         .resizable()
                         .scaledToFill()
                         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.4)
                     Spacer()
-                    
-                }.ignoresSafeArea(.all)
-                VStack{
+                }
+                .ignoresSafeArea(.all)
+                
+                VStack {
                     Spacer()
-                    VStack(alignment: .center){
+                    VStack(alignment: .center) {
                         Image("Logo")
                             .resizable()
                             .frame(width: 142, height: 60)
@@ -39,18 +38,17 @@ struct Login: View {
                             .fill(Color.white)
                             .frame(height: 12)
                         
-                        
-                        TextField(text: $username, label: { Text("아이디") })
-                            .padding()
-                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(isUsernameFocused ? Color(hex: "FF3939") : Color.grey, lineWidth: 1))
-                            .hideKeyBoard()
-                            .focused($isUsernameFocused)
-                            .tint(Color(hex: "FF3939"))
+                        TextField("아이디", text: $username)
                             .autocapitalization(.none)
+                            .tint(Color(hex: "FF3939"))
+                            .textFieldStyle(CustomTextField(focused: $isUsernameFocused))
                         
                         SecureField(text: $password, label: { Text("비밀번호") })
                             .padding()
-                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(isPasswordFocused ? Color.init(hex: "#FF3939") : Color.grey, lineWidth: 1))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(isPasswordFocused ? Color(hex: "FF3939") : Color.grey, lineWidth: 1)
+                            )
                             .hideKeyBoard()
                             .focused($isPasswordFocused)
                             .tint(Color(hex: "FF3939"))
@@ -59,9 +57,7 @@ struct Login: View {
                         Spacer()
                         
                         Button {
-                            isLoggingIn.toggle()
-                            UserDefaults.standard.set("accessToken", forKey: "accessToken")
-                            print(username, password)
+                            login()
                         } label: {
                             LinearGradient(
                                 gradient: Gradient(colors: [.main, .main2]),
@@ -70,12 +66,13 @@ struct Login: View {
                             )
                             .frame(maxWidth: .infinity, maxHeight: 50)
                             .roundedCorners(8, corners: [.allCorners])
-                            .overlay(HStack{
+                            .overlay(HStack {
                                 Text("로그인")
                                     .font(.medium(18))
                                     .foregroundStyle(Color.white)
                             })
-                        }.frame(maxWidth: .infinity, maxHeight: 50)
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: 50)
                         
                         Rectangle()
                             .fill(Color.white)
@@ -90,13 +87,45 @@ struct Login: View {
                     .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.8)
                     .background(Color.white)
                     .roundedCorners(20, corners: [.topLeft, .topRight])
-                    
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .ignoresSafeArea(.all)
                 .navigationDestination(isPresented: $isLoggingIn) {
                     TabbarView()
                         .navigationBarBackButtonHidden()
+                }
+            }
+        }
+        .alert(errorMessage, isPresented: $showError) {
+            Button("확인", role: .cancel) {}
+        }
+    }
+    
+    func login() {
+        provider.request(.login(username: username, password: password)) { result in
+            switch result {
+            case .success(let response):
+                if response.statusCode == 200 || response.statusCode == 201 {
+                    UserDefaults.standard.set("accessToken", forKey: "accessToken")
+                    DispatchQueue.main.async {
+                        isLoggingIn = true
+                    }
+                } else if response.statusCode == 401 {
+                    DispatchQueue.main.async {
+                        errorMessage = "아이디 또는 비밀번호가 잘못되었습니다."
+                        showError = true
+                    }
+                } else {
+                    print(errorMessage)
+                    DispatchQueue.main.async {
+                        errorMessage = "로그인에 실패했습니다. 다시 시도해주세요."
+                        showError = true
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    errorMessage = error.localizedDescription
+                    showError = true
                 }
             }
         }

@@ -20,7 +20,7 @@ struct letApp: App {
                         }
                     }
             } else {
-                Home()
+                Login()
             }
                 
         }
