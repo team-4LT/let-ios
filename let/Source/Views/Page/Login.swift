@@ -74,6 +74,14 @@ struct Login: View {
                         }
                         .frame(maxWidth: .infinity, maxHeight: 50)
                         
+                        HStack {
+                            Text("")
+                            NavigationLink {
+                                Signup1()
+                            } label: {
+                                Text("회원가입")
+                            }
+                        }
                         Rectangle()
                             .fill(Color.white)
                             .frame(height: 36)
@@ -102,14 +110,25 @@ struct Login: View {
     }
     
     func login() {
+        print(username, password)
         provider.request(.login(username: username, password: password)) { result in
             switch result {
             case .success(let response):
                 if response.statusCode == 200 || response.statusCode == 201 {
-                    UserDefaults.standard.set("accessToken", forKey: "accessToken")
-                    DispatchQueue.main.async {
-                        isLoggingIn = true
+                    do{
+                        var accessToken = try response.map(LoginResponse.self).data.accessToken
+                        print(accessToken)
+                        UserDefaults.standard.set(accessToken, forKey: "accessToken")
+                        DispatchQueue.main.async {
+                            isLoggingIn = true
+                        }
+                    }catch{
+                        DispatchQueue.main.async {
+                            errorMessage = "파싱 실패"
+                            showError = true
+                        }
                     }
+                    
                 } else if response.statusCode == 401 {
                     DispatchQueue.main.async {
                         errorMessage = "아이디 또는 비밀번호가 잘못되었습니다."
