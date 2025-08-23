@@ -1,6 +1,7 @@
 import SwiftUI
 import FlexibleKit
 import Moya
+let logger = NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))
 
 struct Login: View {
     @State var username: String = ""
@@ -13,7 +14,9 @@ struct Login: View {
     @FocusState private var isUsernameFocused: Bool
     @FocusState private var isPasswordFocused: Bool
     
-    let provider = MoyaProvider<Api>()
+
+    
+    let provider = MoyaProvider<Api>(plugins: [logger])
     
     var body: some View {
         NavigationStack {
@@ -111,9 +114,15 @@ struct Login: View {
     
     func login() {
         print(username, password)
+        UserDefaults.standard.removeObject(forKey: "accessToken")
         provider.request(.login(username: username, password: password)) { result in
+            
             switch result {
             case .success(let response):
+                
+                if let jsonString = String(data: response.data, encoding: .utf8) {
+                    print("서버 응답 JSON:", jsonString)
+                }
                 if response.statusCode == 200 || response.statusCode == 201 {
                     do{
                         var accessToken = try response.map(LoginResponse.self).data.accessToken
@@ -147,6 +156,7 @@ struct Login: View {
                     showError = true
                 }
             }
+            
         }
     }
 }

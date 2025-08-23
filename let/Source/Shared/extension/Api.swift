@@ -81,13 +81,19 @@
         }
         
         var headers: [String: String]? {
-            var headers = ["Content-Type": "application/json"]
+            var headers = [
+                "Content-Type": "application/json"
+            ]
+            
+            headers["accept"] = "*/*"
             if let token = UserDefaults.standard.string(forKey: "accessToken") {
-//                headers["Authorization"] = "Bearer \(token)"
-                headers["Authorization"] = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHJpbmciLCJ0eXBlIjoiQUNDRVNTIiwiaWF0IjoxNzU1NzU3NjkyLCJleHAiOjE3NTU3NjEyOTJ9.rjK4p0MEGAd8Bt6rmZFusvo2mmY_i86q0W-fRow-8gdPC2I1vNYLr8blXDwETkYYHOfybsFuw4JKiwf8aoJdKg"
+                headers["Authorization"] = "Bearer \(token)"
             }
+
             return headers
         }
 
     }
+
+
 
