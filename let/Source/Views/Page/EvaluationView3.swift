@@ -1,11 +1,9 @@
 //
-//  EvaluationView2.swift
+//  EvaluationView3.swift
 //  LET
 //
-//  Created by dgsw07 on 5/14/25.
+//  Created by dgsw16 on 5/14/25.
 //
-
-import SwiftUI
 
 import SwiftUI
 
@@ -18,44 +16,57 @@ struct EvaluationView3: View {
     @State private var goToNext = false
 
     var body: some View {
-        NavigationView {
-            VStack {
-                Prograss(percent: 0.66)
-                
-                VStack(spacing: 0) {
-                    Text("가장 맛있었던\n급식은 무엇인가요?")
-                        .frame(height: 50)
-                        .multilineTextAlignment(.center)
-                        .padding(.bottom, 65)
-                        .padding(.top, 90)
+        VStack(spacing: 20) {
+            Prograss(percent: 0.75)
+            
+            Spacer()
+            
+            Text("가장 맛없었던\n급식은 무엇인가요?")
+                .font(.title3)
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 65)
 
-                    ForEach(menus, id: \.self) { menu in
-                        MenuBox(menu: menu, isSelected: selectedMenu == menu)
-                            .padding(.bottom, 15)
-                            .onTapGesture {
-                                selectedMenu = menu
-                                goToNext = true
-                            }
-                    }
-
-                    Spacer()
-                    
-                
-                    .navigationDestination(isPresented: $goToNext) {
-                            EvaluationView4()
-                                .navigationBarBackButtonHidden()
+            VStack(spacing: 15) {
+                ForEach(menus, id: \.self) { menu in
+                    MenuBox(menu: menu, isSelected: selectedMenu == menu)
+                        .onTapGesture {
+                            selectedMenu = menu
                         }
                 }
-                .padding(.horizontal, 48)
+            }
+            .padding(.horizontal, 48)
+            
+            Spacer()
+            
+            // 다음 버튼 추가
+            Button(action: {
+                goToNext = true
+            }) {
+                Text("완료")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .frame(width: 344, height: 55)
+                    .background(selectedMenu != nil ? Color.main : Color.gray)
+                    .cornerRadius(12)
+            }
+            .disabled(selectedMenu == nil)
+            .padding(.bottom, 60)
+            
+            .navigationDestination(isPresented: $goToNext) {
+                EvaluationView4()
+                    .navigationBarBackButtonHidden()
             }
         }
     }
 }
 
 #Preview {
-    EvaluationView3()
+    NavigationStack {
+        EvaluationView3()
+    }
 }
-
 
 struct MenuBox: View {
     var menu: String
@@ -75,4 +86,3 @@ struct MenuBox: View {
             }
     }
 }
-
